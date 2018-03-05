@@ -36,6 +36,7 @@ window.onload = function loaded(){
 
       console.log(trainName, destination, firstTime, frequency);
 
+      // create JSON object for newTrain
       var newTrain = {
       	trainName: trainName,
         destination: destination,
@@ -44,7 +45,7 @@ window.onload = function loaded(){
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       }
 
-      //code for the push
+      //code for the push to firebase
       dataRef.ref().push(newTrain);
 
       //log new train to console
@@ -62,6 +63,7 @@ window.onload = function loaded(){
    }); //end #add-train
 
   // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+  // This is a function that iterates through the objects in the firebase
     dataRef.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
       console.log(childSnapshot.val() + " childSnapshot.val()");
@@ -106,7 +108,7 @@ window.onload = function loaded(){
     var nextTrainTime = moment(nextTrain).format("hh:mm");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
       
-    	//put all trains in the table
+    	//put the train in the table, then restart the function with the next train object
       $("table > tbody").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" +childSnapshot.val().destination + "</td><td>" +
   childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
