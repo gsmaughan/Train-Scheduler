@@ -21,8 +21,8 @@ window.onload = function loaded(){
   var firstTime = "";
   var frequency;
 
-  var next;
-  var minAway;
+  // var next;
+  // var minAway;
 
   //capture submit button click
   $("#add-train").on("click", function(event) {
@@ -52,6 +52,7 @@ window.onload = function loaded(){
       console.log(newTrain.destination);
       console.log(newTrain.firstTime);
       console.log(newTrain.frequency);
+      console.log("-------------------");
 
       //clears input text boxes
       $("#name-input").val("");
@@ -61,19 +62,28 @@ window.onload = function loaded(){
    }); //end #add-train
 
   // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
-    dataRef.ref().on("child_added", function(childSnapshot) {
+    dataRef.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-      // Log everything that's coming out of snapshot
-      console.log(childSnapshot.val().trainName);
-      console.log(childSnapshot.val().destination);
-      console.log(childSnapshot.val().firstTime);
-      console.log(childSnapshot.val().frequency);
+      console.log(childSnapshot.val() + " childSnapshot.val()");
 
-      
+      //store everything into a variable
+      	var trainName = childSnapshot.val().trainName;
+  		var destination = childSnapshot.val().destination;
+  		var firstTime = childSnapshot.val().firstTime;
+  		var frequency = childSnapshot.val().frequency;
 
-      // First Time (pushed back 1 year to make sure it comes before current time)
+  	//logging train info
+  		console.log("++++++++++++++++++++++++");
+  		console.log(trainName);
+  		console.log(destination);
+  		console.log(firstTime);
+  		console.log(frequency);
+  		console.log("++++++++++++++++++++++++");
+
+  	
+     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-    console.log(firstTimeConverted + " line 74");
+    console.log(firstTimeConverted + " first time converted");
 
     // Current Time
     var currentTime = moment();
@@ -100,16 +110,7 @@ window.onload = function loaded(){
       $("table > tbody").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" +childSnapshot.val().destination + "</td><td>" +
   childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
-    //   $("#full-member-list").append("<div class='well'><span class='member-name' style='color:blue'> " + childSnapshot.val().name + ", " +
-    //     " </span><span class='member-email'> " + childSnapshot.val().email + ", " +
-    //     " </span><span class='member-age'> " + childSnapshot.val().age + ", " +
-    //     " </span><span class='member-comment'> " + childSnapshot.val().comment + " </span></div>");
-
-    // // Handle the errors
-    // }, function(errorObject) {
-    //   console.log("Errors handled: " + errorObject.code);
     
-
     });//end child added
 
 }//window.onload
