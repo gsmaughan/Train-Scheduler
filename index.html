@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <script src="assets/javascript/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <title>Train Scheduler</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- LINK TO FIREBASE GOES HERE -->
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    
+    
+
+  </head>
+
+  <header>All Aboard</header>
+
+  <body>
+	<div class="conatiner">
+		<div class="col-lg-6">
+			<div id="box1">
+				<div class="panel panel-default">
+            		<div class="panel-heading">
+              			<h3 class="panel-title">Current Train Schedule</h3>
+            		</div>
+            		<div class="panel-body">
+						<table class="table">
+  							<thead>
+    							<tr>
+      								<th scope="col">Train Name</th>
+      								<th scope="col">Destination</th>
+      								<th scope="col">Frequency (min)</th>
+      								<th scope="col">Next Arrival</th>
+      								<th scope="col">Minutes Away</th>
+   								 </tr>
+  							</thead>
+  							<tbody>
+    							<tr>
+      								<th scope="row" id="trainName"></th>
+      									<td id="destination"></td>
+      									<td id="frequency"></td>
+      									<td id="next"></td>
+      									<td id="minutesAway"></td>
+      									
+    							</tr>
+    							 <div id="full-train-list"></div>
+  							</tbody>
+							</table>
+
+
+
+            		</div>
+
+            	</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+
+			<div id="box2">
+				<div class="panel panel-default">
+            	<div class="panel-heading">
+              	<h3 class="panel-title">Add Train</h3>
+            	</div>
+
+            	<div class="panel-body">
+
+              <!-- Sign-up Form (note the various input "types")-->
+              		<form role="form">
+                		<div class="form-group">
+                  		<label for="name-input">Train Name</label>
+                  		<input class="form-control" id="name-input" type="text">
+               		 	</div>
+                		<div class="form-group">
+                  		<label for="destination-input">Destination</label>
+                  		<input class="form-control" id="destination-input" type="text">
+               	 		</div>
+                		<div class="form-group">
+                  		<label for="first-time-input">First Train Time</label>
+                  		<input class="form-control" id="first-time-input" type="text">
+                		</div>
+                		<div class="form-group">
+                 		<label for="comment-input">Frequency (min)</label>
+                 		<input class="form-control" id="frequency-input" type="number"></input>
+                 		</div>
+                		<button class="btn btn-default" id="add-train" type="submit">Submit</button>
+             	 	</form>
+
+            	</div>
+
+          		</div>
+
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+  </body>
+
+ </html>

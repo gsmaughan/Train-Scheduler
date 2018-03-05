@@ -1,0 +1,17 @@
+header{
+	height: 60px;
+	background-color: black;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+.panel-title{
+	/*text-align: center;*/
+	font-weight: bold;
+	font-style: italic;
+	font-size: 20px;
+	color: blue;
+}
+#add-train{
+	background-color: #efdcc3;
+}
