@@ -50,6 +50,7 @@ window.onload = function loaded(){
 
       //log new train to console
       console.log(newTrain.trainName);
+        
       console.log(newTrain.destination);
       console.log(newTrain.firstTime);
       console.log(newTrain.frequency);
