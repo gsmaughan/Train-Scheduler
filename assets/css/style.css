@@ -13,5 +13,17 @@ header{
 	color: blue;
 }
 #add-train{
-	background-color: #efdcc3;
+	background-color: black;
+	color: white;
+}
+.panel-body{
+	background-color: #FFFAF0;
+}
+#tName{
+	font-weight: bold;
+	color: #8B0000;
+}
+#box2{
+	position: fixed;
+	width: 30%;
 }

@@ -109,10 +109,12 @@ window.onload = function loaded(){
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
       
     	//put the train in the table, then restart the function with the next train object
-      $("table > tbody").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" +childSnapshot.val().destination + "</td><td>" +
+      $("table > tbody").append("<tr><td id='tName'>" + childSnapshot.val().trainName + "</td><td>" +childSnapshot.val().destination + "</td><td>" +
   childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
     
     });//end child added
+
+    // style='color:blue' 
 
 }//window.onload
