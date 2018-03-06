@@ -27,3 +27,8 @@ header{
 	position: fixed;
 	width: 30%;
 }
+body{
+	/*background-color: ;*/
+	background-image: radial-gradient(#2F4F4F, #ADFF2F, green);
+
+}
