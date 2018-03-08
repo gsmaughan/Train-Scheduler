@@ -21,6 +21,17 @@ window.onload = function loaded(){
   var firstTime = "";
   var frequency;
 
+  var firstTimeConverted;
+  var currentTime;
+  var diffTime;
+  var tRemainder;
+  var tMinutesTillTrain;
+  var nextTrain;
+  var nextTrainTime;
+
+  var array = [];
+
+
   // var next;
   // var minAway;
 
@@ -66,7 +77,6 @@ window.onload = function loaded(){
   // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
   // This is a function that iterates through the objects in the firebase
     dataRef.ref().on("child_added", function(childSnapshot, prevChildKey) {
-
       console.log(childSnapshot.val() + " childSnapshot.val()");
 
       //store everything into a variable
@@ -83,39 +93,45 @@ window.onload = function loaded(){
   		console.log(frequency);
   		console.log("++++++++++++++++++++++++");
 
-  	
-     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
+
+  	firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
     console.log(firstTimeConverted + " first time converted");
 
     // Current Time
-    var currentTime = moment();
+    currentTime = moment();
     console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
     // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
 
     // Time apart (remainder)
-    var tRemainder = diffTime % frequency;
+    tRemainder = diffTime % frequency;
     console.log(tRemainder);
 
     // Minute Until Train
-    var tMinutesTillTrain = frequency - tRemainder;
+    tMinutesTillTrain = frequency - tRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
     // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    var nextTrainTime = moment(nextTrain).format("hh:mm");
+    nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    nextTrainTime = moment(nextTrain).format("hh:mm");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
       
+  	
+     
+    
+
     	//put the train in the table, then restart the function with the next train object
       $("table > tbody").append("<tr><td id='tName'>" + childSnapshot.val().trainName + "</td><td>" +childSnapshot.val().destination + "</td><td>" +
-  childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+  		childSnapshot.val().frequency + "</td><td>" + nextTrainTime + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
-    
+
     });//end child added
 
-    // style='color:blue' 
+    
+
+
+    
 
 }//window.onload
